@@ -13,6 +13,8 @@ def GetState():
     soup = bs(html, 'html.parser')
     print(soup.find_all("td", class_="b-region")[0].text)
     a=soup.find_all("strong", class_="num")[0].text
+    if a=='':
+        a='1'
     try:
         b=soup.find_all('img', class_='arr' )[0].get('src')
         if b[-8:]=='wn':
@@ -22,7 +24,7 @@ def GetState():
         print(b)
     except BaseException:
         b=None
+        
     return [int(a),'Количество баллов равно '+a+' из 10',b]
 
 
-print(GetState())

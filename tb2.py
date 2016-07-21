@@ -10,21 +10,23 @@ print(time.strftime('%H'))
 while 5:
     if int(time.strftime('%H'))<17:
         t=((17-int(time.strftime('%H')))*3600)-(int(time.strftime('%M'))*60)+300
-        
+            
         print(t)
         time.sleep(t)
     a=GetState()
     if a[0]<5:
-        for u in user.select(): 
-            if a[3]==True:
+        for u in user.select().where(user.userId != '' ):
+            print(u)
+            if a[2]==True:
                 print('true')
                 bot.send_message(u.userId, 'Сейчас пробки равны '+str(a[0])+'. Они снизятся в ближайшее время.')
-            if a[3]==False:
+            if a[2]==False:
                 print('false')
                 bot.send_message(u.userId, 'Сейчас пробки равны '+str(a[0])+'. Они Увеличатся в ближайшее время.')
-            if a[3]==None:
+            if a[2]==None:
                 print('none')
                 bot.send_message(u.userId, 'Сейчас пробки равны '+str(a[0])+'. Они не изменятся в ближайшее время.')
+            print('otpravka')   
             time.sleep(3612*5)
     print('сплю')
     time.sleep(15*60)
